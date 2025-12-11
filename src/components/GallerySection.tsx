@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import gallery1 from "@/assets/gallery-1.jpg";
@@ -18,9 +18,27 @@ const GallerySection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
+
   return (
-    <section id="galeri" className="section-padding bg-background" ref={ref}>
-      <div className="container-custom">
+    <section id="galeri" className="section-padding bg-background relative overflow-hidden" ref={ref}>
+      {/* Parallax decorative */}
+      <motion.div 
+        className="absolute -bottom-32 -left-32 w-64 h-64 rounded-full bg-primary/5 blur-3xl"
+        style={{ y: y1 }}
+      />
+      <motion.div 
+        className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-accent/5 blur-3xl"
+        style={{ y: y2 }}
+      />
+
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -40,6 +58,7 @@ const GallerySection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              style={{ y: index % 2 === 0 ? y1 : y2 }}
               className="relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer group"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
