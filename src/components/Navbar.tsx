@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { name: "Beranda", id: "hero" },
-  { name: "Tentang", id: "tentang" },
-  { name: "Paket", id: "paket" },
-  { name: "Galeri", id: "galeri" },
-  { name: "Video", id: "video" },
-  { name: "Kontak", id: "kontak" },
+  { name: "Beranda", id: "hero", path: "/" },
+  { name: "Tentang", id: "tentang", path: "/#tentang" },
+  { name: "Paket", id: "paket", path: "/#paket" },
+  { name: "Galeri", id: "galeri", path: "/#galeri" },
+  { name: "Video", id: "video", path: "/#video" },
+  { name: "Testimoni", id: "testimoni", path: "/testimoni" },
+  { name: "Kontak", id: "kontak", path: "/#kontak" },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,13 +27,21 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    if (id === "hero") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleNavClick = (link: typeof navLinks[0]) => {
     setIsMobileMenuOpen(false);
+    
+    if (link.path.startsWith("/#")) {
+      const sectionId = link.id;
+      if (location.pathname === "/") {
+        // Already on home page, scroll to section
+        if (sectionId === "hero") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+      // If not on home page, Link will navigate there and hash will handle scroll
+    }
   };
 
   return (
@@ -48,8 +59,8 @@ const Navbar = () => {
       >
         <div className="container-custom flex items-center justify-between px-4">
           {/* Logo */}
-          <button
-            onClick={() => scrollToSection("hero")}
+          <Link
+            to="/"
             className="flex items-baseline gap-1"
           >
             <span className={cn(
@@ -64,21 +75,23 @@ const Navbar = () => {
             )}>
               Souvenir
             </span>
-          </button>
+          </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8">
+          <ul className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <li key={link.id}>
-                <button
-                  onClick={() => scrollToSection(link.id)}
+                <Link
+                  to={link.path}
+                  onClick={() => handleNavClick(link)}
                   className={cn(
                     "font-medium transition-colors hover:text-accent",
-                    isScrolled ? "text-foreground" : "text-primary-foreground"
+                    isScrolled ? "text-foreground" : "text-primary-foreground",
+                    location.pathname === link.path && "text-accent"
                   )}
                 >
                   {link.name}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>
@@ -110,12 +123,13 @@ const Navbar = () => {
             <ul className="py-4 px-4 space-y-2">
               {navLinks.map((link) => (
                 <li key={link.id}>
-                  <button
-                    onClick={() => scrollToSection(link.id)}
-                    className="w-full text-left py-3 px-4 rounded-lg text-foreground font-medium hover:bg-secondary transition-colors"
+                  <Link
+                    to={link.path}
+                    onClick={() => handleNavClick(link)}
+                    className="w-full block text-left py-3 px-4 rounded-lg text-foreground font-medium hover:bg-secondary transition-colors"
                   >
                     {link.name}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

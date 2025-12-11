@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { MapPin, Phone, Clock, Send } from "lucide-react";
@@ -14,6 +14,13 @@ const ContactSection = () => {
     message: ""
   });
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const whatsappMessage = `Halo Lakeisha Souvenir!%0A%0ANama: ${formData.name}%0ANo. HP: ${formData.phone}%0APesan: ${formData.message}`;
@@ -27,8 +34,14 @@ const ContactSection = () => {
   const whatsappLink = "https://wa.me/6289536650988?text=Halo%20Lakeisha%20Souvenir%2C%20saya%20ingin%20bertanya%20tentang%20paket%20wisata%20edukasi.";
 
   return (
-    <section id="kontak" className="section-padding bg-secondary/50" ref={ref}>
-      <div className="container-custom">
+    <section id="kontak" className="section-padding bg-secondary/50 relative overflow-hidden" ref={ref}>
+      {/* Parallax decorative elements */}
+      <motion.div 
+        className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/5 blur-3xl"
+        style={{ y }}
+      />
+
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -48,10 +61,10 @@ const ContactSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Map */}
+            {/* Map - Lokasi asli Lakeisha Souvenir di Kajen, Bangunjiwo, Kasihan, Bantul */}
             <div className="rounded-2xl overflow-hidden shadow-card mb-6 aspect-video">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.2!2d110.3!3d-7.8!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNDgnMDAuMCJTIDExMMKwMTgnMDAuMCJF!5e0!3m2!1sen!2sid!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0447744744856!2d110.33089517590449!3d-7.822899377423988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7af9a1a27b9c5b%3A0x6e6b6c9e6c6b6c9e!2sKajen%2C%20Bangunjiwo%2C%20Kec.%20Kasihan%2C%20Kabupaten%20Bantul%2C%20Daerah%20Istimewa%20Yogyakarta!5e0!3m2!1sid!2sid!4v1702300000000!5m2!1sid!2sid"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -71,7 +84,7 @@ const ContactSection = () => {
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Alamat</h4>
                   <p className="text-muted-foreground">
-                    Lakeisha Souvenir, Kajen, Bangunjiwo, Kec. Kasihan, Bantul, DI Yogyakarta
+                    Lakeisha Souvenir, Kajen, Bangunjiwo, Kec. Kasihan, Bantul, DI Yogyakarta 55184
                   </p>
                 </div>
               </div>

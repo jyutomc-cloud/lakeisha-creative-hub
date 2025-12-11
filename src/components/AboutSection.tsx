@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Palette, Users, GraduationCap, Leaf } from "lucide-react";
@@ -29,10 +29,27 @@ const features = [
 const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section id="tentang" className="section-padding bg-gradient-warm" ref={ref}>
-      <div className="container-custom">
+    <section id="tentang" className="section-padding bg-gradient-warm relative overflow-hidden" ref={ref}>
+      {/* Parallax decorative elements */}
+      <motion.div 
+        className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-accent/5 blur-3xl"
+        style={{ y }}
+      />
+      <motion.div 
+        className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-primary/5 blur-3xl"
+        style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 50]) }}
+      />
+
+      <div className="container-custom relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
