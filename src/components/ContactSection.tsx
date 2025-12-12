@@ -41,28 +41,28 @@ const ContactSection = () => {
         style={{ y }}
       />
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="font-script text-3xl text-accent mb-4">Hubungi Kami</h2>
-          <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+          <h2 className="font-script text-2xl md:text-3xl text-accent mb-2 md:mb-4">Hubungi Kami</h2>
+          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
             Lokasi & <span className="text-primary">Kontak</span>
           </h3>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-10">
           {/* Map & Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Map - Lokasi asli Lakeisha Souvenir di Kajen, Bangunjiwo, Kasihan, Bantul */}
-            <div className="rounded-2xl overflow-hidden shadow-card mb-6 aspect-video">
+            {/* Map */}
+            <div className="rounded-xl md:rounded-2xl overflow-hidden shadow-card mb-4 md:mb-6 aspect-video">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.0447744744856!2d110.33089517590449!3d-7.822899377423988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7af9a1a27b9c5b%3A0x6e6b6c9e6c6b6c9e!2sKajen%2C%20Bangunjiwo%2C%20Kec.%20Kasihan%2C%20Kabupaten%20Bantul%2C%20Daerah%20Istimewa%20Yogyakarta!5e0!3m2!1sid!2sid!4v1702300000000!5m2!1sid!2sid"
                 width="100%"
@@ -76,40 +76,40 @@ const ContactSection = () => {
             </div>
 
             {/* Contact Info */}
-            <div className="space-y-4">
-              <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border/50">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-primary" />
+            <div className="space-y-3 md:space-y-4">
+              <div className="flex items-start gap-3 md:gap-4 p-3 md:p-4 bg-card rounded-xl border border-border/50">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">Alamat</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="font-semibold text-foreground text-sm md:text-base mb-1">Alamat</h4>
+                  <p className="text-xs md:text-sm text-muted-foreground">
                     Lakeisha Souvenir, Kajen, Bangunjiwo, Kec. Kasihan, Bantul, DI Yogyakarta 55184
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border/50">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-primary" />
+              <div className="flex items-start gap-3 md:gap-4 p-3 md:p-4 bg-card rounded-xl border border-border/50">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Phone className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">Telepon / WhatsApp</h4>
-                  <a href="tel:+6289536650988" className="text-accent hover:underline font-semibold">
+                  <h4 className="font-semibold text-foreground text-sm md:text-base mb-1">Telepon / WhatsApp</h4>
+                  <a href="tel:+6289536650988" className="text-accent hover:underline font-semibold text-sm md:text-base">
                     0895 3665 09988
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border/50">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-primary" />
+              <div className="flex items-start gap-3 md:gap-4 p-3 md:p-4 bg-card rounded-xl border border-border/50">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-5 h-5 md:w-6 md:h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">Jam Operasional</h4>
-                  <p className="text-muted-foreground">
+                  <h4 className="font-semibold text-foreground text-sm md:text-base mb-1">Jam Operasional</h4>
+                  <p className="text-xs md:text-sm text-muted-foreground">
                     Setiap Hari: 08.00 - 17.00 WIB<br />
-                    <span className="text-sm">(Kunjungan dengan reservasi)</span>
+                    <span className="text-xs">(Kunjungan dengan reservasi)</span>
                   </p>
                 </div>
               </div>
@@ -121,12 +121,12 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="bg-card rounded-2xl p-8 border border-border/50 shadow-card"
+            className="bg-card rounded-xl md:rounded-2xl p-5 md:p-8 border border-border/50 shadow-card"
           >
-            <h4 className="font-display text-2xl font-bold text-foreground mb-6">Kirim Pesan</h4>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <h4 className="font-display text-xl md:text-2xl font-bold text-foreground mb-4 md:mb-6">Kirim Pesan</h4>
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="name" className="block text-xs md:text-sm font-medium text-foreground mb-1 md:mb-2">
                   Nama Lengkap
                 </label>
                 <input
@@ -135,12 +135,12 @@ const ContactSection = () => {
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                  className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                   placeholder="Masukkan nama Anda"
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="phone" className="block text-xs md:text-sm font-medium text-foreground mb-1 md:mb-2">
                   Nomor WhatsApp
                 </label>
                 <input
@@ -149,32 +149,32 @@ const ContactSection = () => {
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
+                  className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all"
                   placeholder="08xxxxxxxxxx"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                <label htmlFor="message" className="block text-xs md:text-sm font-medium text-foreground mb-1 md:mb-2">
                   Pesan
                 </label>
                 <textarea
                   id="message"
                   required
-                  rows={4}
+                  rows={3}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
+                  className="w-full px-3 md:px-4 py-2.5 md:py-3 text-sm md:text-base rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-primary transition-all resize-none"
                   placeholder="Tulis pesan Anda..."
                 />
               </div>
               <Button type="submit" variant="default" size="lg" className="w-full">
-                <Send className="w-5 h-5" />
+                <Send className="w-4 h-4 md:w-5 md:h-5" />
                 Kirim Pesan
               </Button>
             </form>
 
-            <div className="mt-6 pt-6 border-t border-border">
-              <p className="text-center text-muted-foreground mb-4">Atau hubungi langsung via WhatsApp</p>
+            <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t border-border">
+              <p className="text-center text-xs md:text-sm text-muted-foreground mb-3 md:mb-4">Atau hubungi langsung via WhatsApp</p>
               <Button variant="whatsapp" size="lg" className="w-full" asChild>
                 <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                   📱 Chat WhatsApp Sekarang
