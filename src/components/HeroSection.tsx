@@ -36,14 +36,14 @@ const HeroSection = () => {
 
       {/* Content with Parallax */}
       <motion.div 
-        className="relative z-10 text-center px-4 max-w-5xl mx-auto"
+        className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto"
         style={{ y: textY, opacity }}
       >
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="font-script text-2xl md:text-3xl text-golden mb-4"
+          className="font-script text-lg sm:text-2xl md:text-3xl text-golden mb-2 sm:mb-4"
         >
           Pusat Pelatihan Seni & Wisata Edukasi
         </motion.p>
@@ -52,7 +52,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-6 tracking-tight"
+          className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold text-primary-foreground mb-4 sm:mb-6 tracking-tight"
         >
           LAKEISHA
           <span className="block text-accent">SOUVENIR</span>
@@ -62,7 +62,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-xl md:text-2xl text-primary-foreground/90 mb-10 font-light max-w-2xl mx-auto"
+          className="text-base sm:text-xl md:text-2xl text-primary-foreground/90 mb-6 sm:mb-10 font-light max-w-2xl mx-auto"
         >
           Wujudkan Kreativitas, Abadikan Kenangan
         </motion.p>
@@ -71,18 +71,20 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center"
         >
           <Button
             variant="hero"
-            size="xl"
+            size="lg"
+            className="text-sm sm:text-base"
             onClick={() => scrollToSection("paket")}
           >
             Lihat Paket Keluarga
           </Button>
           <Button
             variant="heroOutline"
-            size="xl"
+            size="lg"
+            className="text-sm sm:text-base"
             onClick={() => scrollToSection("paket")}
           >
             Lihat Paket Sekolah

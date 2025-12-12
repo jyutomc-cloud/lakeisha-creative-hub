@@ -38,20 +38,20 @@ const GallerySection = () => {
         style={{ y: y2 }}
       />
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <h2 className="font-script text-3xl text-accent mb-4">Galeri</h2>
-          <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground">
+          <h2 className="font-script text-2xl md:text-3xl text-accent mb-2 md:mb-4">Galeri</h2>
+          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
             Dokumentasi <span className="text-primary">Kegiatan</span>
           </h3>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {galleryImages.map((image, index) => (
             <motion.div
               key={index}
@@ -59,7 +59,7 @@ const GallerySection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
               style={{ y: index % 2 === 0 ? y1 : y2 }}
-              className="relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer group"
+              className="relative aspect-[4/3] rounded-xl md:rounded-2xl overflow-hidden cursor-pointer group"
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
@@ -68,10 +68,10 @@ const GallerySection = () => {
                 alt={image.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
-              <div className={`absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0'}`} />
-              <div className={`absolute bottom-0 left-0 right-0 p-4 transition-all duration-300 ${hoveredIndex === index ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                <h4 className="font-display text-lg font-semibold text-primary-foreground">{image.title}</h4>
-                <p className="text-sm text-primary-foreground/80">{image.description}</p>
+              <div className={`absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/20 to-transparent transition-opacity duration-300 ${hoveredIndex === index ? 'opacity-100' : 'opacity-0 md:opacity-0'} opacity-100 md:opacity-0`} />
+              <div className={`absolute bottom-0 left-0 right-0 p-2 sm:p-3 md:p-4 transition-all duration-300 md:translate-y-4 md:opacity-0 ${hoveredIndex === index ? 'md:translate-y-0 md:opacity-100' : ''}`}>
+                <h4 className="font-display text-xs sm:text-sm md:text-lg font-semibold text-primary-foreground line-clamp-1">{image.title}</h4>
+                <p className="text-xs text-primary-foreground/80 hidden sm:block">{image.description}</p>
               </div>
             </motion.div>
           ))}

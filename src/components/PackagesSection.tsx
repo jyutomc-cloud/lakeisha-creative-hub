@@ -1,22 +1,23 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Check, Users, Percent, AlertCircle } from "lucide-react";
+import { Check, Users, Percent, AlertCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const familyPackages = [
-  { name: "Membuat Gerabah", price: "20.000", per: "/orang" },
-  { name: "Mewarnai Gerabah", price: "20.000", per: "/orang" },
-  { name: "Mewarnai Caping", price: "30.000", per: "/orang" },
-  { name: "Membatik", price: "40.000", per: "/orang" },
+  { name: "Membuat Gerabah", price: "20.000", per: "/orang", slug: "membuat-gerabah" },
+  { name: "Mewarnai Gerabah", price: "20.000", per: "/orang", slug: "mewarnai-gerabah" },
+  { name: "Mewarnai Caping", price: "30.000", per: "/orang", slug: "mewarnai-caping" },
+  { name: "Membatik", price: "40.000", per: "/orang", slug: "membatik" },
 ];
 
 const schoolPackages = [
-  { name: "Membuat Gerabah", price: "20.000", per: "/anak" },
-  { name: "Mewarnai Gerabah", price: "20.000", per: "/anak" },
-  { name: "Mewarnai Caping", price: "30.000", per: "/anak" },
-  { name: "Membatik", price: "40.000", per: "/anak" },
+  { name: "Membuat Gerabah", price: "20.000", per: "/anak", slug: "membuat-gerabah" },
+  { name: "Mewarnai Gerabah", price: "20.000", per: "/anak", slug: "mewarnai-gerabah" },
+  { name: "Mewarnai Caping", price: "30.000", per: "/anak", slug: "mewarnai-caping" },
+  { name: "Membatik", price: "40.000", per: "/anak", slug: "membatik" },
 ];
 
 const PackagesSection = () => {
@@ -48,30 +49,30 @@ const PackagesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex justify-center mb-10"
+          className="flex justify-center mb-8 md:mb-10"
         >
-          <div className="inline-flex rounded-xl bg-muted p-1.5">
+          <div className="inline-flex rounded-xl bg-muted p-1 md:p-1.5">
             <button
               onClick={() => setActiveTab("keluarga")}
               className={cn(
-                "px-6 py-3 rounded-lg font-semibold transition-all duration-300",
+                "px-4 py-2 md:px-6 md:py-3 rounded-lg text-sm md:text-base font-semibold transition-all duration-300",
                 activeTab === "keluarga"
                   ? "bg-primary text-primary-foreground shadow-card"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >
-              🏠 Paket Keluarga
+              🏠 Keluarga
             </button>
             <button
               onClick={() => setActiveTab("sekolah")}
               className={cn(
-                "px-6 py-3 rounded-lg font-semibold transition-all duration-300",
+                "px-4 py-2 md:px-6 md:py-3 rounded-lg text-sm md:text-base font-semibold transition-all duration-300",
                 activeTab === "sekolah"
                   ? "bg-primary text-primary-foreground shadow-card"
                   : "text-muted-foreground hover:text-foreground"
               )}
             >
-              🎒 Paket Sekolah
+              🎒 Sekolah
             </button>
           </div>
         </motion.div>
@@ -82,7 +83,7 @@ const PackagesSection = () => {
           initial={{ opacity: 0, x: activeTab === "keluarga" ? -20 : 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 mb-8 md:mb-10"
         >
           {packages.map((pkg, index) => (
             <motion.div
@@ -90,19 +91,26 @@ const PackagesSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className="bg-card rounded-2xl p-6 shadow-card card-hover border border-border/50"
+              className="bg-card rounded-2xl p-4 md:p-6 shadow-card card-hover border border-border/50 group"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center">
-                  <Check className="w-5 h-5 text-accent" />
+              <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-4 h-4 md:w-5 md:h-5 text-accent" />
                 </div>
-                <h4 className="font-display text-lg font-semibold text-foreground">{pkg.name}</h4>
+                <h4 className="font-display text-base md:text-lg font-semibold text-foreground">{pkg.name}</h4>
               </div>
-              <div className="flex items-baseline gap-1">
-                <span className="text-sm text-muted-foreground">Rp</span>
-                <span className="text-3xl font-bold text-primary">{pkg.price}</span>
-                <span className="text-sm text-muted-foreground">{pkg.per}</span>
+              <div className="flex items-baseline gap-1 mb-4">
+                <span className="text-xs md:text-sm text-muted-foreground">Rp</span>
+                <span className="text-2xl md:text-3xl font-bold text-primary">{pkg.price}</span>
+                <span className="text-xs md:text-sm text-muted-foreground">{pkg.per}</span>
               </div>
+              <Link 
+                to={`/paket/${pkg.slug}`}
+                className="inline-flex items-center gap-2 text-sm text-accent hover:text-accent/80 font-medium transition-colors group-hover:gap-3"
+              >
+                Lihat Detail
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </motion.div>
           ))}
         </motion.div>

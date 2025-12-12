@@ -22,25 +22,25 @@ const VideoSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12 px-4"
         >
-          <h2 className="font-script text-3xl text-accent mb-4">Video</h2>
-          <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-script text-2xl md:text-3xl text-accent mb-2 md:mb-4">Video</h2>
+          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 md:mb-4">
             Ragam Kreativitas dalam <span className="text-primary">Setiap Detik</span>
           </h3>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Saksikan momen-momen seru di balik setiap karya yang tercipta di Lakeisha Souvenir.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-3 md:gap-6 px-4 md:px-0">
           {videos.map((video, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
-              className="relative aspect-video rounded-2xl overflow-hidden cursor-pointer group bg-foreground/10"
+              className="relative aspect-video rounded-xl md:rounded-2xl overflow-hidden cursor-pointer group bg-foreground/10"
               onClick={() => setActiveVideo(video.src)}
             >
               <video
@@ -51,12 +51,12 @@ const VideoSection = () => {
                 preload="metadata"
               />
               <div className="absolute inset-0 bg-foreground/40 group-hover:bg-foreground/30 transition-colors duration-300 flex items-center justify-center">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-accent flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-elevated animate-pulse">
-                  <Play className="w-8 h-8 md:w-10 md:h-10 text-accent-foreground ml-1" fill="currentColor" />
+                <div className="w-10 h-10 sm:w-14 sm:h-14 md:w-20 md:h-20 rounded-full bg-accent flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-elevated animate-pulse">
+                  <Play className="w-5 h-5 sm:w-7 sm:h-7 md:w-10 md:h-10 text-accent-foreground ml-0.5" fill="currentColor" />
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-foreground/80 to-transparent">
-                <h4 className="font-display text-lg font-semibold text-primary-foreground">{video.title}</h4>
+              <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3 md:p-4 bg-gradient-to-t from-foreground/80 to-transparent">
+                <h4 className="font-display text-xs sm:text-sm md:text-lg font-semibold text-primary-foreground line-clamp-1">{video.title}</h4>
               </div>
             </motion.div>
           ))}

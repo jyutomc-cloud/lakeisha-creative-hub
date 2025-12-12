@@ -49,27 +49,25 @@ const AboutSection = () => {
         style={{ y: useTransform(scrollYProgress, [0, 1], [-50, 50]) }}
       />
 
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto mb-16"
+          className="text-center max-w-4xl mx-auto mb-10 md:mb-16"
         >
-          <h2 className="font-script text-3xl text-accent mb-4">Tentang Kami</h2>
-          <h3 className="font-display text-4xl md:text-5xl font-bold text-foreground mb-8">
+          <h2 className="font-script text-2xl md:text-3xl text-accent mb-2 md:mb-4">Tentang Kami</h2>
+          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 md:mb-8">
             Rumah Kreativitas <span className="text-primary">Keluarga Indonesia</span>
           </h3>
-          <p className="text-lg text-muted-foreground leading-relaxed">
+          <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">
             <strong className="text-foreground">Lakeisha Souvenir</strong> adalah destinasi wisata edukasi yang berlokasi di Bantul, Yogyakarta. 
             Kami menyediakan pengalaman seni tangan tradisional yang autentik, mulai dari membuat gerabah, 
-            mewarnai keramik, hingga membatik. Dengan pendampingan profesional dan suasana yang menyenangkan, 
-            kami mengajak keluarga dan sekolah untuk menjelajahi warisan budaya Indonesia sambil menciptakan 
-            kenangan indah bersama.
+            mewarnai keramik, hingga membatik.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -78,11 +76,11 @@ const AboutSection = () => {
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
               className="text-center group"
             >
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
-                <feature.icon className="w-10 h-10 text-primary transition-colors group-hover:text-primary-foreground" />
+              <div className="w-14 h-14 md:w-20 md:h-20 mx-auto mb-2 md:mb-4 rounded-full bg-primary/10 flex items-center justify-center transition-all duration-300 group-hover:bg-primary group-hover:scale-110">
+                <feature.icon className="w-7 h-7 md:w-10 md:h-10 text-primary transition-colors group-hover:text-primary-foreground" />
               </div>
-              <h4 className="font-display text-xl font-semibold text-foreground mb-2">{feature.title}</h4>
-              <p className="text-sm text-muted-foreground">{feature.description}</p>
+              <h4 className="font-display text-sm md:text-xl font-semibold text-foreground mb-1 md:mb-2">{feature.title}</h4>
+              <p className="text-xs md:text-sm text-muted-foreground">{feature.description}</p>
             </motion.div>
           ))}
         </div>
